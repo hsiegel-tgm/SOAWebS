@@ -172,15 +172,41 @@ skipping this
 
 \section{Build a RESTful WebService}
 "RESTful web services are built to work best on the Web. Representational State Transfer (REST) is an architectural style that specifies constraints, such as the uniform interface, that if applied to a web service induce desirable properties, such as performance, scalability, and modifiability, that enable services to work best on the Web. In the REST architectural style, data and functionality are considered resources and are accessed using Uniform Resource Identifiers (URIs), typically links on the Web. The resources are acted upon by using a set of simple, well-defined operations. The REST architectural style constrains an architecture to a client/server architecture and is designed to use a stateless communication protocol, typically HTTP. In the REST architecture style, clients and servers exchange representations of resources by using a standardized interface and protocol."\cite{javaEE6}
+\\\\
+REST is an architectural style which is based on web-standards and the HTTP protocol. REST was first described by Roy Fielding in 2000.
+In a REST based architecture everything is a resource. A resource is accessed via a common interface based on the HTTP standard methods.
+In a REST based architecture you typically have a REST server which provides access to the resources and a REST client which accesses and modifies the REST resources.
+Every resource should support the HTTP common operations. Resources are identified by global IDs (which are typically URIs).
+REST allows that resources have different representations, e.g., text, XML, JSON etc. The REST client can ask for a specific representation via the HTTP protocol (content negotiation)  \cite{vogella}
+\\\\
+ \textbf{HTTP methods} \\
+The PUT, GET, POST and DELETE methods are typical used in REST based architectures.
+\\
+The following table gives an explanation of these operations.
+\\
+GET defines a reading access of the resource without side-effects. The resource is never changed via a GET request, e.g., the request has no side effects (idempotent).
+\\
+PUT creates a new resource. It must also be idempotent.
+\\
+DELETE removes the resources. The operations are idempotent. They can get repeated without leading to different results.
+\\
+POST updates an existing resource or creates a new resource\\ \cite{vogella}
 \subsection{JAX-RS}
 \textbf{Annotations}\\
 Resource identification through URI: A RESTful web service exposes a set of resources that identify the targets of the interaction with its clients. Resources are identified by URIs, which provide a global addressing space for resource and service discovery. See The @Path Annotation and URI Path Templates for more information.
-
-
-
-Root resource classes are POJOs that are either annotated with @Path or have at least one method annotated with @Path or a request method designator, such as @GET, @PUT, @POST, or @DELETE. Resource methods are methods of a resource class annotated with a request method designator. This section explains how to use JAX-RS to annotate Java classes to create RESTful web services.
-
-
+\\ \\ \\
+Root resource classes are POJOs that are either annotated with @Path or have at least one method annotated with @Path or a request method designator, such as @GET, @PUT, @POST, or @DELETE. Resource methods are methods of a resource class annotated with a request method designator. This section explains how to use JAX-RS to annotate Java classes to create RESTful web services.\cite{javaEE6}
+\\ \\ \\
+Annotation	Description
+@PATH(your_path)	Sets the path to base URL + /your_path. The base URL is based on your application name, the servlet and the URL pattern from the web.xml configuration file.
+@POST	Indicates that the following method will answer to an HTTP POST request.
+@GET	Indicates that the following method will answer to an HTTP GET request.
+@PUT	Indicates that the following method will answer to an HTTP PUT request.
+@DELETE	Indicates that the following method will answer to an HTTP DELETE request.
+@Produces(MediaType.TEXT_PLAIN[, more-types])	@Produces defines which MIME type is delivered by a method annotated with @GET. In the example text ("text/plain") is produced. Other examples would be "application/xml" or "application/json".
+@Consumes(type[, more-types])	@Consumes defines which MIME type is consumed by this method.
+@PathParam	Used to inject values from the URL into a method parameter. This way you inject, for example, the ID of a resource into the method to get the correct object.
+\\ \\ \\
 
 
 \newpage
@@ -190,5 +216,10 @@ Root resource classes are POJOs that are either annotated with @Path or have at 
    \textbf{The Java EE 6 Tutorial} \\
   \textit{http://docs.oracle.com/javaee/6/tutorial/doc/gijqy.html}
   \newline last used: 06.04.2014, 11:52
+  
+  \bibitem{vogella}
+   \textbf{REST with Java (JAX-RS) using Jersey - Tutorial}, Lars Vogel\\
+  \textit{  http://www.vogella.com/tutorials/REST/article.html}
+  \newline last used: 11.04.2014, 13:58
 \end{thebibliography}
 \end{document}

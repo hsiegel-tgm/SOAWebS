@@ -25,18 +25,8 @@
 		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
 		
 		<property name="hibernate.hbm2ddl.auto">create</property>
-<mapping class="westbahn.model.Bahnhof"/>
-<mapping class="westbahn.model.Benutzer"/>
-<!-- <mapping class="westbahn.model.Reservierung"/> -->
-<mapping class="westbahn.model.Zug"/>
-<mapping class="westbahn.model.Strecke"/>
-<mapping class="westbahn.model.Ticket"/>
-<mapping class="westbahn.model.Einzelticket"/>
-<mapping class="westbahn.model.Zeitkarte"/>
-<mapping class="westbahn.model.Sonderangebot"/>
- <mapping class="westbahn.model.Reservierung" resource="Reservierung.hbm.xml" />
 
-
+		<mapping class="model.KnowledgeBase"/>
 
 
 	</session-factory>

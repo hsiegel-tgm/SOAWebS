@@ -1,0 +1,194 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{ulem}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{listings}
+\usepackage{fixltx2e}
+\usepackage{scrpage2}
+\usepackage{lastpage}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\usepackage{glossaries}
+\usepackage[
+top    = 2.75cm,
+bottom = 2.00cm,
+left   = 2.50cm,
+right  = 2.00cm]{geometry}
+\setcounter{secnumdepth}{4}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\newcommand{\executeiffilenewer}[3]{%
+\ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+{\pdffilemoddate{#2}}>0%
+{\immediate\write18{#3}}\fi%
+}
+\newcommand{\includesvg}[1]{%
+\executeiffilenewer{#1.svg}{#1.pdf}%
+{inkscape -z -D --file=#1.pdf --export-pdf=#1.pdf --export-latex}%
+\input{#1.pdf_tex}%
+}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+% Oberer Teil der Titelseite:
+\includegraphics[width=0.5\textwidth]{images/logo}\\[1cm]    
+
+\LARGE TGM - HTBLuVA Wien XX \\ IT Department  \\[1.5cm]
+
+% Title
+\rule{1.0\textwidth}{1mm}
+{ \huge \bfseries \\[0.4cm]  \huge Service Oriented Architecture and Restful Webservice \\ \LARGE Dezsys 08  \\[0.4cm] }
+
+\rule{1.0\textwidth}{1mm}
+
+
+
+% Author and supervisor
+\noindent 
+\vspace{5cm}
+
+\begin{center}
+\large
+Authors: 
+Siegel \textsc{Hannah} \&
+Nachname2 \textsc{Vorname2}
+\end{center}
+
+\vfill
+
+% Bottom of the page
+{\large \today}
+
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+
+
+%HEADER AND FOOTER
+\pagenumbering{arabic}
+\ohead{\headmark}
+\automark{section}
+\ifoot{© Authors}
+\ofoot{\pagemark ~of \pageref{LastPage}}
+
+\newpage
+
+
+
+\section{Working time}
+\begin{center}
+\textbf{Estimated working time}
+\end{center}
+\begin{table}[h]
+\begin{tabular}{|p{0.6\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|}
+\hline
+\textbf{Task}    & \textbf{Person}   & \textbf{Time in minutes} \\ \hline \hline
+Reading into the Topic, Deciding onto Frameworks  & Coworker1 &  120     \\ \hline 
+Creating the Knowledge base & Coworker1 &  120     \\ \hline 
+Inserting Test-Data into the  Knowledge base & Coworker1 &  60     \\ \hline 
+Testing the Performance of the  Knowledge base & Coworker1 &  60     \\ \hline 
+RestFul CRUD Operations & \begin{tabular}[c]{c}Coworker1\\ Coworker2\end{tabular} & \begin{tabular}[c]{c} 120 \\ 120 \end{tabular}    \\ \hline 
+Generate SOA Webservice & Coworker1 &  120  \\ \hline 
+Include SOAP for SOA Webservice & Coworker1 &  60  \\ \hline 
+Generate WSDL File & Coworker1 &  60  \\ \hline 
+Generate Website for using RestFul Webservices & Coworker2 &  120  \\ \hline 
+Generate Client for SOA Webservice & Coworker1 &  120  \\ \hline 
+Document Datatransfer with SOAP & Coworker2 &  90  \\ \hline 
+Testing & \begin{tabular}[c]{c}Coworker1\\ Coworker2\end{tabular} & \begin{tabular}[c]{c} 120 \\ 120 \end{tabular}    \\ \hline 
+Documentation  & Coworker1 &  120     \\ \hline 
+\hline 
+Total & \begin{tabular}[c]{c}Coworker1\\ Coworker2\end{tabular} & \begin{tabular}[c]{c}XXX\\XXX\end{tabular}   \\ \hline 
+\textbf{Total Team} & & \textbf{4 hours}  \\ \hline 
+\end{tabular}
+\end{table}
+
+\section{Aufgabenstellung}
+
+\section{Knowledge Base}
+For the Knowledge Base we decided to use Hibernate and JPA. \\
+We were using IntelliJ and therefore it was quite easy. \\
+At first, we were making a new project, which has already a Hello World Webservice. We copied the hibernate config file from the \textit{Westbahn} project into the \texttt{src} folder.\\
+Also, we had to add all the needed libraries, such as the mysql connector and the hibernate libraries.\\
+\\
+The Knowledge Base class can be seen in Listing \ref{KnowledgeBase}.
+\begin{lstlisting}[caption=KnowledgeBase entity class, label=KnowledgeBase]
+// import statements
+
+@Entity
+public class KnowledgeBase {
+    @Id
+    @GeneratedValue
+    private Long ID;
+
+    @Column(unique=true)
+    @Size(min=10, max=500)
+    private String text;
+
+    @Column(unique=true)
+    @Size(min=10, max=50)
+    private String topic;
+
+	// constructor, getter and setter
+}
+\end{lstlisting}
+
+- database connection is not working tho
+-> mocking it
+- new module : JPA module... (file - new module - JPA, Hibernate, SQL Supp)
+
+
+brauch nun schon 2 stunden fuer hibernate
+skipping this
+
+
+\section{Build a RESTful WebService}
+"RESTful web services are built to work best on the Web. Representational State Transfer (REST) is an architectural style that specifies constraints, such as the uniform interface, that if applied to a web service induce desirable properties, such as performance, scalability, and modifiability, that enable services to work best on the Web. In the REST architectural style, data and functionality are considered resources and are accessed using Uniform Resource Identifiers (URIs), typically links on the Web. The resources are acted upon by using a set of simple, well-defined operations. The REST architectural style constrains an architecture to a client/server architecture and is designed to use a stateless communication protocol, typically HTTP. In the REST architecture style, clients and servers exchange representations of resources by using a standardized interface and protocol."\cite{javaEE6}
+\subsection{JAX-RS}
+\textbf{Annotations}\\
+Resource identification through URI: A RESTful web service exposes a set of resources that identify the targets of the interaction with its clients. Resources are identified by URIs, which provide a global addressing space for resource and service discovery. See The @Path Annotation and URI Path Templates for more information.
+
+
+
+Root resource classes are POJOs that are either annotated with @Path or have at least one method annotated with @Path or a request method designator, such as @GET, @PUT, @POST, or @DELETE. Resource methods are methods of a resource class annotated with a request method designator. This section explains how to use JAX-RS to annotate Java classes to create RESTful web services.
+
+
+
+
+\newpage
+\begin{thebibliography}{56}
+
+\bibitem{javaEE6}
+   \textbf{The Java EE 6 Tutorial} \\
+  \textit{http://docs.oracle.com/javaee/6/tutorial/doc/gijqy.html}
+  \newline last used: 06.04.2014, 11:52
+\end{thebibliography}
+\end{document}

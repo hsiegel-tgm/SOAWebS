@@ -106,28 +106,50 @@ Nachname2 \textsc{Vorname2}
 
 \section{Working time}
 \begin{center}
-\textbf{Estimated working time}
 \end{center}
 \begin{table}[h]
-\begin{tabular}{|p{0.6\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|}
+\begin{tabular}{|p{0.5\textwidth}|p{0.1\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|}
 \hline
-\textbf{Task}    & \textbf{Person}   & \textbf{Time in minutes} \\ \hline \hline
-Reading into the Topic, Deciding onto Frameworks  & Coworker1 &  120     \\ \hline 
-Creating the Knowledge base & Coworker1 &  120     \\ \hline 
-Inserting Test-Data into the  Knowledge base & Coworker1 &  60     \\ \hline 
-Testing the Performance of the  Knowledge base & Coworker1 &  60     \\ \hline 
-RestFul CRUD Operations & \begin{tabular}[c]{c}Coworker1\\ Coworker2\end{tabular} & \begin{tabular}[c]{c} 120 \\ 120 \end{tabular}    \\ \hline 
-Generate SOA Webservice & Coworker1 &  120  \\ \hline 
-Include SOAP for SOA Webservice & Coworker1 &  60  \\ \hline 
-Generate WSDL File & Coworker1 &  60  \\ \hline 
-Generate Website for using RestFul Webservices & Coworker2 &  120  \\ \hline 
-Generate Client for SOA Webservice & Coworker1 &  120  \\ \hline 
-Document Datatransfer with SOAP & Coworker2 &  90  \\ \hline 
-Testing & \begin{tabular}[c]{c}Coworker1\\ Coworker2\end{tabular} & \begin{tabular}[c]{c} 120 \\ 120 \end{tabular}    \\ \hline 
-Documentation  & Coworker1 &  120     \\ \hline 
+\textbf{Task}    & \textbf{Person}   & \textbf{Estimated}  & \textbf{Final}\\ \hline \hline
+
+Preparation and Frameworks & Haidn &  60 minutes & 60 minutes  \\ \hline 
+
+
+Creating the Knowledge base with Hibernate & Haidn &  60   minutes & \textcolor{red}{180 minutes}
+   \\ \hline 
+Creating the Knowledge base & Haidn &  &  \textcolor{red}{60 minutes} \\ \hline 
+
+Inserting Test-Data  & Haidn &  30 minutes  &  30 minutes  \\ \hline 
+
+Testing the Performance  & Haidn &  30  minutes  &  60  minutes  \\ \hline 
+
+RestFul CRUD Operations & Siegel &  90   minutes & \textcolor{red}{210 minutes} \\  
+  & Haidn &  90 minutes  &  90   minutes  \\ \hline 
+
+
+Generate SOA Webservice & Siegel &  60 minutes &  \textcolor{red}{120 minutes} \\ \hline 
+
+Include SOAP for SOA Webservice & Siegel &  30 minutes &  60 minutes \\ \hline 
+Generate WSDL File & Siegel &  30 minutes & \textcolor{green}{10 minutes}  \\ \hline 
+
+Generate Website & Haidn &  60 minutes &  90 minutes \\ \hline 
+
+Generate Client for SOA Webservice & Siegel &  60 minutes & \textcolor{red}{180 minutes} \\ \hline 
+Document Datatransfer with SOAP & Siegel &  60 minutes &  60 minutes \\ \hline 
+
+Testing & Siegel &  90  minutes  &  90  minutes  \\  
+  & Haidn &  90  minutes  &  90  minutes   \\ \hline 
+
+
+Documentation  & Siegel &  60 minutes  &  60 minutes  \\ \hline 
 \hline 
-Total & \begin{tabular}[c]{c}Coworker1\\ Coworker2\end{tabular} & \begin{tabular}[c]{c}XXX\\XXX\end{tabular}   \\ \hline 
-\textbf{Total Team} & & \textbf{4 hours}  \\ \hline 
+
+Testing & Siegel &  8 hours  & xxx   \\  
+  & Haidn &  7 hours   & xxx   \\ \hline 
+
+
+ \hline 
+\textbf{Total Team} & & \textbf{15 hours} &\textbf{xx hours}  \\ \hline 
 \end{tabular}
 \end{table}
 
@@ -171,63 +193,111 @@ skipping this
 
 
 \section{Build a RESTful WebService}
-"RESTful web services are built to work best on the Web. Representational State Transfer (REST) is an architectural style that specifies constraints, such as the uniform interface, that if applied to a web service induce desirable properties, such as performance, scalability, and modifiability, that enable services to work best on the Web. In the REST architectural style, data and functionality are considered resources and are accessed using Uniform Resource Identifiers (URIs), typically links on the Web. The resources are acted upon by using a set of simple, well-defined operations. The REST architectural style constrains an architecture to a client/server architecture and is designed to use a stateless communication protocol, typically HTTP. In the REST architecture style, clients and servers exchange representations of resources by using a standardized interface and protocol."\cite{javaEE6}
+%"RESTful web services are built to work best on the Web. Representational State Transfer (REST) is an architectural style that specifies constraints, such as the uniform interface, that if applied to a web service induce desirable properties, such as performance, scalability, and modifiability, that enable services to work best on the Web. In the REST architectural style, data and functionality are considered resources and are accessed using Uniform Resource Identifiers (URIs), typically links on the Web. The resources are acted upon by using a set of simple, well-defined operations. The REST architectural style constrains an architecture to a client/server architecture and is designed to use a stateless communication protocol, typically HTTP. In the REST architecture style, clients and servers exchange representations of resources by using a standardized interface and protocol."\cite{javaEE6}
+%\\\\
+REST is an architectural style which is based on web-standards and the HTTP protocol. REST was first described by Roy Fielding in 2000.In a REST based architecture everything is a resource. A resource is accessed via a common interface based on the HTTP standard methods. In a REST based architecture you typically have a REST server which provides access to the resources and a REST client which accesses and modifies the REST resources. Every resource should support the HTTP common operations. Resources are identified by global IDs (which are typically URIs). REST allows that resources have different representations, e.g., text, XML, JSON etc. The REST client can ask for a specific representation via the HTTP protocol (content negotiation)  \cite{vogella}
 \\\\
-REST is an architectural style which is based on web-standards and the HTTP protocol. REST was first described by Roy Fielding in 2000.
-In a REST based architecture everything is a resource. A resource is accessed via a common interface based on the HTTP standard methods.
-In a REST based architecture you typically have a REST server which provides access to the resources and a REST client which accesses and modifies the REST resources.
-Every resource should support the HTTP common operations. Resources are identified by global IDs (which are typically URIs).
-REST allows that resources have different representations, e.g., text, XML, JSON etc. The REST client can ask for a specific representation via the HTTP protocol (content negotiation)  \cite{vogella}
-\\\\
- \textbf{HTTP methods} \\
+\textbf{HTTP methods} \\
 The PUT, GET, POST and DELETE methods are typical used in REST based architectures.
-\\
-The following table gives an explanation of these operations.
-\\
-GET defines a reading access of the resource without side-effects. The resource is never changed via a GET request, e.g., the request has no side effects (idempotent).
-\\
-PUT creates a new resource. It must also be idempotent.
-\\
-DELETE removes the resources. The operations are idempotent. They can get repeated without leading to different results.
-\\
-POST updates an existing resource or creates a new resource\\ \cite{vogella}
+ \cite{vogella}
 \subsection{JAX-RS}
-\textbf{Annotations}\\
-Resource identification through URI: A RESTful web service exposes a set of resources that identify the targets of the interaction with its clients. Resources are identified by URIs, which provide a global addressing space for resource and service discovery. See The @Path Annotation and URI Path Templates for more information.
-\\ \\ \\
-Root resource classes are POJOs that are either annotated with @Path or have at least one method annotated with @Path or a request method designator, such as @GET, @PUT, @POST, or @DELETE. Resource methods are methods of a resource class annotated with a request method designator. This section explains how to use JAX-RS to annotate Java classes to create RESTful web services.\cite{javaEE6}
-\\ \\ \\
-Annotation	Description
-@PATH(your_path)	Sets the path to base URL + /your_path. The base URL is based on your application name, the servlet and the URL pattern from the web.xml configuration file.
-@POST	Indicates that the following method will answer to an HTTP POST request.
-@GET	Indicates that the following method will answer to an HTTP GET request.
-@PUT	Indicates that the following method will answer to an HTTP PUT request.
-@DELETE	Indicates that the following method will answer to an HTTP DELETE request.
-@Produces(MediaType.TEXT_PLAIN[, more-types])	@Produces defines which MIME type is delivered by a method annotated with @GET. In the example text ("text/plain") is produced. Other examples would be "application/xml" or "application/json".
-@Consumes(type[, more-types])	@Consumes defines which MIME type is consumed by this method.
-@PathParam	Used to inject values from the URL into a method parameter. This way you inject, for example, the ID of a resource into the method to get the correct object.
-\\ \\ \\
+First we decided to use the JAX-RS libary. It works with annotations which seems really easy.
+The code could also be generated with IntelliJ but we were not able to find any possibility to deploy it using the IDE and we encountered too many errors. We were also trying an complete tutorial (\cite{vogella}).Still we were not able to solve any of them, we decided to use another language - PHP. An example for an Hello World JAX-RS Webservice can be found in Listing \ref{RFWS}.
+\begin{lstlisting}[caption=Restful Webservice, label=RFWS]
+@Path("/helloworld")
+public class RestfulWebservice {
+    @GET
+    @Produces("text/plain")
+    public String getClichedMessage() {
+        return "Hello World!";
+    }
+}
+\end{lstlisting}
+
+
+
+%\textbf{Annotations}\\
+%Resource identification through URI: A RESTful web service exposes a set of resources that identify the targets of the interaction with its clients. Resources are identified by URIs, which provide a global addressing space for resource and service discovery. See The @Path Annotation and URI Path Templates for more information.
+%\\ \\ \\
+%Root resource classes are POJOs that are either annotated with @Path or have at least one method annotated with @Path or a request method designator, such as @GET, @PUT, @POST, or @DELETE. Resource methods are methods of a resource class annotated with a request method designator. This section explains how to use JAX-RS to annotate Java classes to create RESTful web services.\cite{javaEE6}
+%\\ \\ \\
+%Annotation	Description
+%@PATH(your\_path)	Sets the path to base URL + /your\_path. The base URL is based on your application name, the servlet and the URL pattern from the web.xml configuration file.
+%@POST	Indicates that the following method will answer to an HTTP POST request.
+%@GET	Indicates that the following method will answer to an HTTP GET request.
+%@PUT	Indicates that the following method will answer to an HTTP PUT request.
+%@DELETE	Indicates that the following method will answer to an HTTP DELETE request.
+%@Produces(MediaType.TEXT\_PLAIN[, more-types])	@Produces defines which MIME type is delivered by a method annotated with @GET. In the example text ("text/plain") is produced. Other examples would be "application/xml" or "application/json".
+%@Consumes(type[, more-types])	@Consumes defines which MIME type is consumed by this method.
+%@PathParam	Used to inject values from the URL into a method parameter. This way you inject, for example, the ID of a resource into the method to get the correct object.
+%\\ \\ \\
 
 
 
 
-New Project
-
-Download Glassfish
-
-VERSUCH DAS ZU DEPLOYEN -> nach 3 Stunden aufgegeben
-
-http://www.vogella.com/tutorials/REST/article.html
-
-ging auch nicht
 
 
-jax-ws generating
-hier fand ich alles:
-http://www.mkyong.com/webservices/jax-ws/jax-ws-hello-world-example/
-
+\newpage
 \section{Building the SOA Webservice in Java}
 Because we were using the IntelliJ IDEA, this was quite easy.
+A hello world example with jax-ws can be generated under \textit{new project} -\textgreater \textit{Check Webservice } -\textgreater Check \textit{Generate server sample code}. \\
+This client code is a Hello World example and can already be run. When we accessed it trough the webbrowser we were able to see some information about the service and the generated wsdl File.\\
+\\
+Under \cite{mkyongjaxwsexample} we were able to find a complete example, using an interface and more important also a client. So we were changing our code then. We used the hello world example and the tutorial from mkyong to adapt the following classes:\\
+\begin{itemize}
+\item \texttt{Searchable}-Interface (Listing \ref{Searchable})
+\item \texttt{KnowledgeBaseSearcher}-Class which implements the \texttt{Searchable}-Interface and provides the search method (Listing \ref{KnowledgeBaseSearcher})
+\item \texttt{KnowledgeBaseSearcherPublisher}-Class which publishes the \texttt{KnowledgeBaseSearcher}-Service  (Listing \ref{KnowledgeBaseSearcherPublisher})
+\item \texttt{KnowledgeBaseSearcherClient}-Class which is using the service over it's WSDL File (Listing \ref{KnowledgeBaseSearcherClient})
+\end{itemize}
+Man muss nun zuerst den \texttt{KnowledgeBaseSearcherPublisher} starten, um das Service zu publishen und das Starten des Clients (\texttt{KnowledgeBaseSearcherClient}) und das unten angegebene Beispiel nun gibt nun
+\textit{Return the search query with the search of: blabla} aus.
+
+\begin{lstlisting}[caption=Searchable interface, label=Searchable]
+// imports javax.ws.*
+@WebService
+@SOAPBinding(style = Style.RPC)
+public interface Searchable {
+    @WebMethod String search(String searchstring);
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=KnowledgeBaseSearcher class, label=KnowledgeBaseSearcher]
+// imports javax.ws.*
+@WebService(endpointInterface = "soa.Searchable")
+public class KnowledgeBaseSearcher implements Searchable{
+    @Override
+    public String search(String searchstring) {
+        return "Return the search query with the search of: "+searchstring;
+    }
+\end{lstlisting}
+\begin{lstlisting}[caption=KnowledgeBaseSearcherPublisher class, label=KnowledgeBaseSearcherPublisher]
+public class KnowledgeBaseSearcherPublisher {
+    public static void main(String[] args) {
+        Endpoint.publish("http://localhost:9999/soa/searcher", new KnowledgeBaseSearcher());
+    }
+}
+\end{lstlisting}
+\begin{lstlisting}[caption=KnowledgeBaseSearcherClient class, label=KnowledgeBaseSearcherClient]
+public class KnowledgeBaseSearcherClient {
+    public static void main(String[] args) throws Exception {
+        URL url = new URL("http://localhost:9999/soa/searcher?wsdl");
+
+        //1st argument service URI, refer to wsdl document above
+        //2nd argument is service name, refer to wsdl document above
+        QName qname = new QName("http://soa/", "KnowledgeBaseSearcherService");
+
+        Service service = Service.create(url, qname);
+        Searchable searcher = service.getPort(Searchable.class);
+
+        System.out.println(searcher.search("blabla"));
+    }
+}
+\end{lstlisting}
+
+
+
+
 
 \newpage
 \begin{thebibliography}{56}
@@ -241,5 +311,14 @@ Because we were using the IntelliJ IDEA, this was quite easy.
    \textbf{REST with Java (JAX-RS) using Jersey - Tutorial}, Lars Vogel\\
   \textit{  http://www.vogella.com/tutorials/REST/article.html}
   \newline last used: 11.04.2014, 13:58
+  
+    
+  \bibitem{mkyongjaxwsexample}
+   \textbf{JAX-WS Hello World Example – RPC Style}, mkyong ,August 29, 2012\\
+  \textit{  http://www.mkyong.com/webservices/jax-ws/jax-ws-hello-world-example/}
+  \newline last used: 12.04.2014, 10:36
+  
+
+  
 \end{thebibliography}
 \end{document}

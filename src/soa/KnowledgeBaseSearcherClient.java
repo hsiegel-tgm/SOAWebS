@@ -33,7 +33,7 @@ public class KnowledgeBaseSearcherClient {
         Searchable hello = service.getPort(Searchable.class);
 
         // Call method on Searchable
-        System.out.println(hello.search("20"));
+        System.out.println("I got:"+hello.search("20"));
 
     }
 }

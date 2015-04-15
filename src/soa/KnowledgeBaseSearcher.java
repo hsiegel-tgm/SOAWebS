@@ -24,13 +24,16 @@ public class KnowledgeBaseSearcher implements Searchable {
         try {
             // DataSource Class
             com.mysql.jdbc.jdbc2.optional.MysqlDataSource d = new com.mysql.jdbc.jdbc2.optional.MysqlDataSource();
-            d.setServerName("10.0.104.157");
+            d.setServerName("10.0.104.165");
             d.setDatabaseName("iknow");
+            // d.setUser("vsdb");
+            // d.setPassword("letmein");
             d.setUser("vsdb");
-            d.setPassword("letmein");
+            d.setPassword("vsdbpassword");
             con = d.getConnection();
 
-            String query = "SELECT * FROM knowledgebase;";
+            //TODO mach das bitte mit Hibernate???
+            String query = "SELECT * FROM knowledgebase WHERE text LIKE '%"+searchstring+"%' ;";
 
             Statement st = (Statement) con.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -46,7 +49,10 @@ public class KnowledgeBaseSearcher implements Searchable {
 
             }
         } catch (SQLException e) {
+            System.out.println("There was a problem");//TODO
             e.printStackTrace();
+        }catch (Exception e) {
+            System.out.println("There was a general problem... "); //TODO
         }
 
 

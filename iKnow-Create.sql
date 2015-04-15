@@ -20,3 +20,7 @@ GRANT ALL ON iknow.* TO 'vsdb'@'localhost' IDENTIFIED BY 'letmein';
 
 INSERT INTO knowledgebase VALUES(1,'Test1', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.');
 INSERT INTO knowledgebase VALUES(2,'Test2', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.');
+
+INSERT INTO knowledgebase VALUES(3,'Test3', 'Hannah hat einen Hut.');
+INSERT INTO knowledgebase VALUES(4,'Test4', 'Wie geht es dir?');
+INSERT INTO knowledgebase VALUES(5,'Test5', 'Yuhu du bist ein Hut');

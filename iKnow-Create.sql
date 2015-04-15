@@ -4,9 +4,12 @@
 
 DROP DATABASE IF EXISTS iknow;
 CREATE DATABASE iknow;
+USE iknow;
 
 DROP TABLE IF EXISTS knowledgebase;
-CREATE DATABASE knowledgebase(
+
+
+CREATE TABLE knowledgebase(
 	id INT NOT NULL auto_increment,
 	topic VARCHAR(10),
 	text VARCHAR(100),
@@ -15,5 +18,5 @@ CREATE DATABASE knowledgebase(
 
 GRANT ALL ON iknow.* TO 'vsdb'@'localhost' IDENTIFIED BY 'letmein';
 
-INSERT INTO knowledgebase VALUES('Test1', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.');
-INSERT INTO knowledgebase VALUES('Test2', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.');
+INSERT INTO knowledgebase VALUES(1,'Test1', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.');
+INSERT INTO knowledgebase VALUES(2,'Test2', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.');

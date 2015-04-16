@@ -32,8 +32,10 @@ public class KnowledgeBaseSearcherClient {
         // Get Searchable Object
         Searchable hello = service.getPort(Searchable.class);
 
+        // hello.ann();
+
         // Call method on Searchable
-        System.out.println("I got: \n "+hello.search("Hut"));
+        System.out.println("I got: \n "+hello.search("Hannah"));
 
     }
 }

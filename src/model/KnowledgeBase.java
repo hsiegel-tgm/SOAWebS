@@ -1,22 +1,25 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.sql.Clob;
 
 /**
  * The KnowledgeBase itself
  */
+
+@NamedQuery(
+        name="searchKnowledgeBase",
+        query="FROM KnowledgeBase kb WHERE kb.text LIKE :searchsting"
+)
 @Entity
 public class KnowledgeBase {
     @Id
     @GeneratedValue
     private Long ID;
 
-    @Column(unique=true)
-    @Size(min=10, max=500)
+    @Column(columnDefinition="LONGTEXT")
+    @Size(min=10, max=50000)
     private String text;
 
     @Column(unique=true)
@@ -29,9 +32,14 @@ public class KnowledgeBase {
      * @param text
      * @param topic
      */
-    public KnowledgeBase(String text, String topic) {
+    public KnowledgeBase(String topic,String text) {
         this.text = text;
         this.topic = topic;
+    }
+
+    public KnowledgeBase() {
+        this.text = "bla";
+        this.topic = "blablabla";
     }
 
     /**
@@ -52,4 +60,9 @@ public class KnowledgeBase {
     public void setTopic(String topic) {
         this.topic = topic;
     }
+
+    public Long getID() {
+        return ID;
+    }
+
 }

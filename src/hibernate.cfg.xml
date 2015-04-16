@@ -8,9 +8,9 @@
 
 		<!-- Database connection settings -->
  		<property name="hibernate.connection.driver_class"> com.mysql.jdbc.Driver </property>
- 		<property name="hibernate.connection.url">jdbc:mysql://192.168.1.39:3306/vsdb08db</property>
-		<property name="hibernate.connection.username" >vsdb08</property>
-		<property name="hibernate.connection.password" >vsdb08</property>
+ 		<property name="hibernate.connection.url">jdbc:mysql://192.168.1.41:3306/iknow</property>
+		<property name="hibernate.connection.username" >vsdb</property>
+		<property name="hibernate.connection.password" >vsdbpassword</property>
 		<property name="hibernate.dialect" >org.hibernate.dialect.MySQLDialect</property>
 
 	

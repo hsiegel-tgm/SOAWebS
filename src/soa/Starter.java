@@ -12,15 +12,11 @@ import java.io.InputStreamReader;
  * CLI to start webservice and Client
  *
  * @author Hannah Siege
- * @version 0.1
+ * @version 0.2
  */
 public class Starter {
     public static void main(String arg []){
-        // arg (egal ob gross oder klein) : client|searcher
-        // server http://localhost:9999/soa/searcher
-        // client http://localhost:9999/soa/searcher?wsdl
         new Starter();
-
     }
 
     /**
@@ -30,40 +26,40 @@ public class Starter {
         try {
             getParameters();
         } catch (IOException e1) {
-            //TODO
         }
     }
 
 
-
+    /**
+     * The method getParameters is demanding the CLI interaction with the user and simply starting the components
+     *
+     * @throws IOException
+     */
     public void getParameters() throws IOException{
         String start = "client"; //default: client
         String host = "localhost"; //default: localhost
         int port = 9999; //default: 9999
         String path="/soa/searcher"; //default: /soa/searcher
-
-        start = read(start,"System: What would you like to start? (client|searcher|default|filldb)","filldb","client","default","searcher");
-
-
         int inserts = 1000;
         int tags = 50;
-
         String type = "everything";
         String keyname = "Tag";
 
+        start = read(start,"System: What would you like to start? (client|searcher|default|filldb)","filldb","client","default","searcher");
+
         switch (start) {
             case "client":
-                //host = readNormal("System: Please specify the host (localhost or ip)"); //TODO
-                //path = readNormal("System: Please specify the path to the service (/xx/xx/xx.../xx)"); //TODO
-                //port = readInt("System: Please specify the port",0,20000); //TODO
+                host = readNormal("System: Please specify the host (localhost or ip)");
+                path = readNormal("System: Please specify the path to the service (/xx/xx/xx.../xx)");
+                port = readInt("System: Please specify the port",0,20000);
                 break;
             case "searcher":
-                // host = readNormal("System: Please specify the host (localhost or ip)"); //TODO
-                //path = readNormal("System: Please specify the path to the service (/xx/xx/xx.../xx)"); //TODO
-                //port = readInt("System: Please specify the port",0,20000); //TODO
+                System.out.println("The following information will be added to an string like \"http://\"+host+\":\"+port+\"\"+path (e.g http://localhost:9999/searcher/)"  );
+                host = readNormal("System: Please specify the host (localhost or ip)");
+                path = readNormal("System: Please specify the path to the service (/xx/xx/xx.../xx)");
+                port = readInt("System: Please specify the port",0,20000);
                 break;
             case "filldb":
-
                 type = read(type,"System: Please specify the type you want to have ...  (Everything|delete|only-tags|only-entries|only-tagEntries|default)","only-tags","only-entries","only-tagEntries","Everything","delete");
                 switch (type) {
                     case "everything":
@@ -85,9 +81,9 @@ public class Starter {
                         break;
                     case "only-entries":
                         System.out.println("Okay. We will only generate some entries... \nWe will need some additional informations... \n");
-                        inserts = readInt("System: Please specify the number of entries to be inserted (max 100000)",0,100000); //TODO
+                        inserts = readInt("System: Please specify the number of entries to be inserted (max 100000)",0,1100000);
                         break;
-                    case "only-tagEntries":
+                    case "only-tagentries":
                         System.out.println("Okay. We will only generate random tags to the entries... \n");
                 }
         }
@@ -112,7 +108,6 @@ public class Starter {
 
             case "searcher":
                 Endpoint.publish("http://"+host+":"+port+""+path, new KnowledgeBaseSearcher());
-                //TODO test this not LOCALLY
                 System.out.println("KnowledgeBaseSearcher Service was successful published on http://"+host+":"+port+""+path+"\n\n");
                 break;
 
@@ -133,9 +128,9 @@ public class Starter {
                     case "only-entries":
                         kbm.onlyEntries(inserts);
                         break;
-                    case "only-tagEntries":
+                    case "only-tagentries":
                         kbm.onlyKKb();
-                        System.out.println("Okay. We will only generate random tags to the entries... \n");
+                        break;
                 }
 
                 long estimatedTime = System.currentTimeMillis() - startTime;
@@ -143,8 +138,6 @@ public class Starter {
                 break;
         }
     }
-
-
 
     /**
      * The method read is reading in a line, and checks it.

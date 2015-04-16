@@ -10,19 +10,29 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 /**
- * Created by hsiegel on 2015-04-06.
+ * The abstract class PerformActionOnDatabase is holding all general Database stuff
+ *
+ * @author Hannah Siegel
+ * @version 0.2
  */
 public abstract class PerformActionOnDatabase {
     protected SessionFactory m_sessionFactory;
 
+    /**
+     * Constructor. Generates Session Factory
+     */
     public PerformActionOnDatabase(){
         m_sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
     }
 
+    /**
+     * Delte all from one ManageableTable.
+     *
+     * @param table - Table object
+     */
     public void deleteAll(ManageableTable table){
         Session s = null;
         Transaction t = null;
@@ -38,12 +48,14 @@ public abstract class PerformActionOnDatabase {
             // run query and fetch reslut
             List<?> res = q.list();
 
+            //delete all
             for(Object entry: res){
                 s.delete(entry);
             }
         }catch(Exception e){
             System.out.println("There was a problem when deleting "+table.getName());
         }finally{
+            // commit
             t.commit();
             s.flush();
             s.close();

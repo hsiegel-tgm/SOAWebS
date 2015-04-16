@@ -5,7 +5,13 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * The Tag model
+ *
+ * @author Hannah Siegel
+ * @version 0.3
+ */
+//Named Queries (select all and select by tagname)
 @Entity
 @NamedQueries({@NamedQuery(
         name="selectTags",

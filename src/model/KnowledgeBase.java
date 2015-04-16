@@ -2,14 +2,14 @@ package model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.sql.Clob;
 
 /**
  * The KnowledgeBase itself
+ *
+ * @author Hannah Siegel
+ * @version 0.1
  */
-
-
-
+//Named Queries (select all and select by string)
 @NamedQueries({@NamedQuery(
         name="searchKnowledgeBase",
         query="FROM KnowledgeBase kb WHERE kb.text LIKE :searchsting"
@@ -43,14 +43,18 @@ public class KnowledgeBase implements ManageableTable {
         this.topic = topic;
     }
 
+    /**
+     * The constructor of the class, sets default values
+     */
     public KnowledgeBase() {
-        this.text = "bla";
-        this.topic = "blablabla";
+        this.text = "texttexttexttexttexttexttexttexttexttext";
+        this.topic = "topictopictopic ";
     }
 
     /**
      * generated Getter and Setter
      */
+
     public String getText() {
         return text;
     }

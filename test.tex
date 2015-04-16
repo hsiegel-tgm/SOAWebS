@@ -227,6 +227,40 @@ For the Company iKnow Systems a Knowledgemanagement like Wikipedia should be don
 \end{itemize}
 \section{Knowledge Base}
 For the Knowledge Base we decided to use Hibernate.
+\subsection{Hibernate Configuration}
+\begin{lstlisting}[caption=hibernate config xml (hibernate.cfg.xml) entity class, label=hibconf]
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- Database connection settings -->
+ 		<property name="hibernate.connection.driver_class"> com.mysql.jdbc.Driver </property>
+ 		<property name="hibernate.connection.url">jdbc:mysql://10.0.104.150:3306/iknow</property>
+		<property name="hibernate.connection.username" >vsdb</property>
+		<property name="hibernate.connection.password" >vsdbpassword</property>
+		<property name="hibernate.dialect" >org.hibernate.dialect.MySQLDialect</property>	
+		<property name="connection.pool_size">5</property>
+		<property name="current_session_context_class">thread</property>
+		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+		
+		<!-- do not set this to create unless you want to create the database -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+
+		<property name="hibernate.jdbc.batch_size">49</property>
+
+		<!-- Logging (if true: it will be logged) -->
+		<property name="show_sql">false</property>
+		
+		<!-- Logging classes -->
+		<mapping class="model.KnowledgeBase"/>
+		<mapping class="model.Tag"/>
+	</session-factory>
+</hibernate-configuration>
+
+\end{lstlisting}
 \subsection{First Knowledgebase}
 At first, we were making a new project, which has already a Hello World Webservice. We copied the hibernate config file from the \textit{Westbahn} project into the \texttt{src} folder.\\
 Also, we had to add all the needed libraries, such as the mysql connector and all the hibernate libraries.\\
@@ -528,7 +562,7 @@ The Data was searched using the Tag Entity and the users searchstring. The webse
     }
     \end{lstlisting}
 \section{Performance?}
-%TODO
+%TODO MUST BE TESTED TOMORROW MORNING
 
 \newpage
 \begin{thebibliography}{56}

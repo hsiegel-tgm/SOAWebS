@@ -165,10 +165,10 @@ Preparation and Frameworks & Haidn &  60 minutes & 60 minutes  \\ \hline
 
 Creating the Knowledge base with Hibernate & Haidn &  60   minutes & \textcolor{red}{180 minutes}
    \\ \hline 
-   Creating the Knowledge base with Hibernate & Siegel &   & \textcolor{red}{270 minutes}
+   Creating the Knowledge base with Hibernate & Haidn &   & \textcolor{red}{270 minutes}
    \\  
 
-Inserting Test-Data  & Siegel &  30 minutes  &   \textcolor{red}{180 minutes}  \\ \hline 
+Inserting Test-Data  & Siegel &  30 minutes  &   \textcolor{red}{270 minutes}  \\ \hline 
 
 Testing the Performance  & Siegel &  30  minutes  &  \textcolor{red}{60  minutes}  \\ \hline 
 
@@ -185,17 +185,19 @@ Generate Website & Haidn &  60 minutes &  XXX minutes \\ \hline
 
 Generate Client for SOA Webservice & Siegel &  60 minutes & \textcolor{red}{180 minutes} \\ \hline 
 
-Document Datatransfer with SOAP & Siegel &  60 minutes &  XXX minutes \\ \hline 
+Document Datatransfer with SOAP & Siegel &  60 minutes &  \\ \hline 
 
-Testing & Siegel &  90  minutes  &  XXX  minutes  \\  
+Testing & Siegel &  90  minutes  &  310  minutes  \\  
   & Haidn &  90  minutes  &  XXX  minutes   \\ \hline 
 
 
-Documentation  & Siegel &  60 minutes  &  XXX minutes  \\ \hline 
+Documentation  & Siegel &  60 minutes  &  90 minutes  \\  
+  & Haidn &  60  minutes  &    \\ \hline 
+
 \hline 
 
 Testing & Siegel &  8 hours  & xxx   \\  
-  & Haidn &  7 hours   & xxx   \\ \hline 
+  & Haidn &  8 hours   & xxx   \\ \hline 
 
 
  \hline 
@@ -207,23 +209,20 @@ Testing & Siegel &  8 hours  & xxx   \\
 For the Company iKnow Systems a Knowledgemanagement like Wikipedia should be done.
 \begin{itemize}
 \item A data model which performs well should be implemented\\
-\textcolor{green}{Datamodel was generated.} \\
-\textcolor{orange}{Performance is not ideal but fine, we worked on it at least}
+\textcolor{green}{Datamodel was generated. Performance is fine}
 \item A RestFul Webservice should be done as an interface which can Update, Create and Delete an Entry.\\
 \textcolor{red}{?}
 \item A SOA Webservie should be done\\
 \textcolor{green}{Webservice works, WSDL was generated} \\
-\textcolor{orange}{SOAP has not been used to a full extend.}
 \item Generate a Website for using the Webservices\\
 \textcolor{red}{?}
 \item Implement a Client which calls the Webservice\\
 \textcolor{green}{Client works and CLI works} \\
 \textcolor{orange}{Only tested locally, but this was not demanded.}
 \item Document the Datatransfer with SOAP\\
-\textcolor{red}{?}
+\textcolor{red}{Not implemented}
 \item Have a routine for inserting 1000000 Entries \\
-\textcolor{green}{Works} \\
-\textcolor{orange}{Very Slow - exported the insert into an mysql dump File}
+\textcolor{green}{Works fine} \\
 \end{itemize}
 \section{Knowledge Base}
 For the Knowledge Base we decided to use Hibernate.
@@ -561,8 +560,12 @@ The Data was searched using the Tag Entity and the users searchstring. The webse
 
     }
     \end{lstlisting}
-\section{Performance?}
-%TODO MUST BE TESTED TOMORROW MORNING
+\section{Good Performance?}
+With our data structure, we inserted 1000000 knowledge base entries. \\
+The insert of all the data took about 10 minutes when we tested it.
+\\
+Because we only search with the Tags, searching takes only about 1 second, which is definitely sufficient performance for us! \\
+
 
 \section{How to run the code}
 The jar must only be run and then a CLI will start. Please note that the hibernate config must be set to the right database settings.

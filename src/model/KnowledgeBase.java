@@ -8,12 +8,18 @@ import java.sql.Clob;
  * The KnowledgeBase itself
  */
 
-@NamedQuery(
+
+
+@NamedQueries({@NamedQuery(
         name="searchKnowledgeBase",
         query="FROM KnowledgeBase kb WHERE kb.text LIKE :searchsting"
-)
+),
+@NamedQuery(
+        name="selectAllKnowledgeBase",
+        query="FROM KnowledgeBase "
+)})
 @Entity
-public class KnowledgeBase {
+public class KnowledgeBase implements ManageableTable {
     @Id
     @GeneratedValue
     private Long ID;
@@ -22,7 +28,7 @@ public class KnowledgeBase {
     @Size(min=10, max=50000)
     private String text;
 
-    @Column(unique=true)
+    @Column
     @Size(min=10, max=50)
     private String topic;
 
@@ -65,4 +71,17 @@ public class KnowledgeBase {
         return ID;
     }
 
+    public String toString(){
+        return "ID:" + this.getID() + "\n     Topic: "   + this.getTopic() +"\n     Text: "+this.getText()+"\n";
+    }
+
+    @Override
+    public String getAllQuery() {
+        return "selectAllKnowledgeBase";
+    }
+
+    @Override
+    public String getName() {
+        return "KnowledgeBase";
+    }
 }

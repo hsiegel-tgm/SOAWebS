@@ -1,9 +1,11 @@
 package soa;
 
 import model.KnowledgeBase;
+import model.Tag;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.AnnotationConfiguration;
 
 import javax.jws.WebService;
 import java.util.List;
@@ -20,6 +22,7 @@ public class KnowledgeBaseSearcher implements Searchable {
     }
 
     public KnowledgeBaseSearcher(){
+        sf = new AnnotationConfiguration().configure().buildSessionFactory();
     }
 
     /**
@@ -30,64 +33,45 @@ public class KnowledgeBaseSearcher implements Searchable {
      */
     @Override
     public String search(String searchstring) {
-        String s="The result from the Knowledgebase is: \n";
+        String s="";
 
-        /* Connection con = null;
-        try {
-            // DataSource Class
-            com.mysql.jdbc.jdbc2.optional.MysqlDataSource d = new com.mysql.jdbc.jdbc2.optional.MysqlDataSource();
-            d.setServerName("10.0.104.165");
-            d.setDatabaseName("iknow");
-            d.setUser("vsdb");
-            d.setPassword("vsdbpassword");
-            con = d.getConnection();
-            //TODO mach das bitte mit Hibernate???
-            String query = "SELECT * FROM knowledgebase WHERE text LIKE '%"+searchstring+"%' ;";
-            Statement st = (Statement) con.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
-                String id = rs.getString("id");
-                String text = rs.getString("topic");
-                String topic = rs.getString("text");
-                s+=id+" "+text+" "+topic+" \n";
-                System.out.println(id+" "+text+" "+topic+" \n");
-            }
-        } catch (SQLException e) {
-            System.out.println("There was a problem");//TODO
-            e.printStackTrace();
-        }catch (Exception e) {
-            System.out.println("There was a general problem... "); //TODO
-        }
-        return s;
-        */
-
-       // SessionFactory m_sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-
-
+        StringBuilder sb = new StringBuilder();
 
         // open Session
         Session session = sf.openSession();
 
+
         // create query
-        Query q = session.getNamedQuery("searchKnowledgeBase");
+        Query q = session.getNamedQuery("searchTag");
 
         // setting parameters
-        q.setParameter("searchsting", "%"+searchstring+"%");
+        q.setParameter("searchstring", searchstring);
+
+        long startTime = System.currentTimeMillis();
+
 
         // run query and fetch reslut
-        List<?> res = q.list();
+        List<Tag> res = q.list();
 
-        // print out results
+
         if (res.size() >= 1) {
-            s+= "\n\n Results: \n";
-            for (int i = 0; i < res.size(); ++i) {
-                KnowledgeBase kb = (KnowledgeBase) res.get(i);
-                s+="ID:" + kb.getID() + "\n     Topic: "   + kb.getTopic() +"\n     Text: "+kb.getText()+"\n";
-            }
+            List<KnowledgeBase>kbs = res.get(0).getKnowledgebases();
+            kbs.forEach(x -> {
+                sb.append("Knowledge: " + x.toString());
+            });
         }
+
+        s = sb.toString();
+
+        String newString="";
+
+        long estimatedTime = System.currentTimeMillis() - startTime;
+
+        newString += "Searching took "+estimatedTime/1000 +" seconds\n";
+        newString += s;
         session.flush();
         session.close();
 
-        return s;
+        return newString;
     }
 }

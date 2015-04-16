@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usepackage{ulem}
 \usepackage{caption}
+\parindent0pt
 \usepackage{placeins}
 \usepackage[usenames,dvipsnames]{color}
 \usepackage[colorinlistoftodos]{todonotes}
@@ -55,6 +56,54 @@ right  = 2.00cm]{geometry}
   tabsize=3
 }
 
+
+
+%Bibtex
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+%lslisting
+\lstdefinestyle{customjava}{
+  	language=Java,
+  	frame=tlrb,
+  	aboveskip=3mm,
+  	belowskip=3mm,
+  	showstringspaces=false,
+  	columns=flexible,
+  	basicstyle={\small\ttfamily},
+  	numbers=none,
+  	numberstyle=\tiny\color{gray},
+  	keywordstyle=\color{purple},
+  	commentstyle=\color{dkgreen},
+  	stringstyle=\color{blue},
+  	breaklines=true,
+  	breakatwhitespace=true
+  	tabsize=3
+}
+
+%WHY IS THIS NOT WORKING???
+%\lstset{escapechar=@,style=customjava}
+
+%Cite right
+\newcommand{\citeof}[2]{{
+		\par \begingroup \leftskip=1cm \noindent \textit 
+		''#1'' \cite{#2} \\
+		\par \endgroup
+	}}
+	
+% Picture insert (UseCase)
+% \insertpicture{mik.png}{Some picture}{\cite{bk_key}}{itm:pic1}{0.5}
+\newcommand{\insertpicture}[5]{{
+	\begin{figure}[!htb]
+		\centering\includegraphics[width=#5\textwidth]{#1}
+		\caption[#2 #3]{#2}
+		\label{#4}
+	\end{figure}
+	\FloatBarrier
+}}
+
+
+
 \begin{document}
 \begin{titlepage}
 \begin{center}
@@ -96,8 +145,7 @@ Nachname2 \textsc{Vorname2}
 %HEADER AND FOOTER
 \pagenumbering{arabic}
 \ohead{\headmark}
-\automark{section}
-\ifoot{© Authors}
+\ifoot{© Haidn, Siegel}
 \ofoot{\pagemark ~of \pageref{LastPage}}
 
 \newpage
@@ -117,14 +165,15 @@ Preparation and Frameworks & Haidn &  60 minutes & 60 minutes  \\ \hline
 
 Creating the Knowledge base with Hibernate & Haidn &  60   minutes & \textcolor{red}{180 minutes}
    \\ \hline 
-Creating the Knowledge base & Haidn &  &  \textcolor{red}{60 minutes} \\ \hline 
+   Creating the Knowledge base with Hibernate & Siegel &   & \textcolor{red}{270 minutes}
+   \\  
 
-Inserting Test-Data  & Haidn &  30 minutes  &  30 minutes  \\ \hline 
+Inserting Test-Data  & Siegel &  30 minutes  &   \textcolor{red}{180 minutes}  \\ \hline 
 
-Testing the Performance  & Haidn &  30  minutes  &  60  minutes  \\ \hline 
+Testing the Performance  & Siegel &  30  minutes  &  \textcolor{red}{60  minutes}  \\ \hline 
 
 RestFul CRUD Operations & Siegel &  90   minutes & \textcolor{red}{210 minutes} \\  
-  & Haidn &  90 minutes  &  90   minutes  \\ \hline 
+  & Haidn &  90 minutes  &  XXX   minutes  \\ \hline 
 
 
 Generate SOA Webservice & Siegel &  60 minutes &  \textcolor{red}{120 minutes} \\ \hline 
@@ -132,16 +181,17 @@ Generate SOA Webservice & Siegel &  60 minutes &  \textcolor{red}{120 minutes} \
 Include SOAP for SOA Webservice & Siegel &  30 minutes &  60 minutes \\ \hline 
 Generate WSDL File & Siegel &  30 minutes & \textcolor{green}{10 minutes}  \\ \hline 
 
-Generate Website & Haidn &  60 minutes &  90 minutes \\ \hline 
+Generate Website & Haidn &  60 minutes &  XXX minutes \\ \hline 
 
 Generate Client for SOA Webservice & Siegel &  60 minutes & \textcolor{red}{180 minutes} \\ \hline 
-Document Datatransfer with SOAP & Siegel &  60 minutes &  60 minutes \\ \hline 
 
-Testing & Siegel &  90  minutes  &  90  minutes  \\  
-  & Haidn &  90  minutes  &  90  minutes   \\ \hline 
+Document Datatransfer with SOAP & Siegel &  60 minutes &  XXX minutes \\ \hline 
+
+Testing & Siegel &  90  minutes  &  XXX  minutes  \\  
+  & Haidn &  90  minutes  &  XXX  minutes   \\ \hline 
 
 
-Documentation  & Siegel &  60 minutes  &  60 minutes  \\ \hline 
+Documentation  & Siegel &  60 minutes  &  XXX minutes  \\ \hline 
 \hline 
 
 Testing & Siegel &  8 hours  & xxx   \\  
@@ -153,15 +203,35 @@ Testing & Siegel &  8 hours  & xxx   \\
 \end{tabular}
 \end{table}
 
-\section{Aufgabenstellung}
-
+\section{Task description}
+For the Company iKnow Systems a Knowledgemanagement like Wikipedia should be done.
+\begin{itemize}
+\item A data model which performs well should be implemented\\
+\textcolor{green}{Datamodel was generated.} \\
+\textcolor{orange}{Performance is not ideal but fine, we worked on it at least}
+\item A RestFul Webservice should be done as an interface which can Update, Create and Delete an Entry.\\
+\textcolor{red}{?}
+\item A SOA Webservie should be done\\
+\textcolor{green}{Webservice works, WSDL was generated} \\
+\textcolor{orange}{SOAP has not been used to a full extend.}
+\item Generate a Website for using the Webservices\\
+\textcolor{red}{?}
+\item Implement a Client which calls the Webservice\\
+\textcolor{green}{Client works and CLI works} \\
+\textcolor{orange}{Only tested locally, but this was not demanded.}
+\item Document the Datatransfer with SOAP\\
+\textcolor{red}{?}
+\item Have a routine for inserting 1000000 Entries \\
+\textcolor{green}{Works} \\
+\textcolor{orange}{Very Slow - exported the insert into an mysql dump File}
+\end{itemize}
 \section{Knowledge Base}
-For the Knowledge Base we decided to use Hibernate and JPA. \\
-We were using IntelliJ and therefore it was quite easy. \\
+For the Knowledge Base we decided to use Hibernate.
+\subsection{First Knowledgebase}
 At first, we were making a new project, which has already a Hello World Webservice. We copied the hibernate config file from the \textit{Westbahn} project into the \texttt{src} folder.\\
-Also, we had to add all the needed libraries, such as the mysql connector and the hibernate libraries.\\
+Also, we had to add all the needed libraries, such as the mysql connector and all the hibernate libraries.\\
 \\
-The Knowledge Base class can be seen in Listing \ref{KnowledgeBase}.
+The first Knowledge Base class can be seen in Listing \ref{KnowledgeBase}.
 \begin{lstlisting}[caption=KnowledgeBase entity class, label=KnowledgeBase]
 // import statements
 
@@ -182,17 +252,61 @@ public class KnowledgeBase {
 	// constructor, getter and setter
 }
 \end{lstlisting}
+We tested the performance and it was not fine.
+It took about 15 minutes to insert 50000 entries and searching the Entries was impossible.
+\\
+We then decided to change our Data model to two databases: a \texttt{Tag} and a \texttt{KnowledgeBase} Entry.
+The Search-performance was a lot better, it worked finally, but inserting the data was slower.
+\subsection{Better performance Solution}
+We were using the Tag class (Listing \ref{Tag}) to have a Tag saved to an KnowledgeBase. Only the Tag can be searched and the search is a lot faster! Once a tag has been found using the \texttt{selectTags} Query, over the \texttt{getKnowledgeBase} method the KnowledgeBases can be found faster.
+\begin{lstlisting}[caption= Tag entity class (selection), label=Tag]
+@Entity
+@NamedQueries({@NamedQuery(
+        name="selectTags",
+        query="FROM Tag"
+),
+        @NamedQuery(
+                name="searchTag",
+                query="FROM Tag WHERE tagname=:searchstring"
+        )})
+public class Tag implements ManageableTable{
+    @Id
+    @GeneratedValue
+    private Long ID;
 
-- database connection is not working tho
--> mocking it
-- new module : JPA module... (file - new module - JPA, Hibernate, SQL Supp)
+    @Column
+    @Size(min=9, max=11)
+    private String tagname;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    List<KnowledgeBase> knowledgebases;
+
+    public void addKnowledgeBase(KnowledgeBase kb){
+        this.knowledgebases.add(kb);
+    }
+}
+\end{lstlisting}
+\subsection{Problems}
+\begin{itemize}
+\item 		The Hibernate Config must be set to update. Only at the first run it should be create. Otherwise the database will be empty: 
+\begin{lstlisting}
+<property name="hibernate.hbm2ddl.auto">update</property>
+\end{lstlisting}
+\item The Database must be set 'public'. For this, in the file \texttt{/etc/init.d/my.cnf} the \texttt{bind-address 127.0.0.1} must be commented out.
+\item A user mus be generated who has the permission to come from another host: (\cite{hostpermisson})
+\begin{lstlisting}
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' WITH GRANT OPTION;
+CREATE USER 'username'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' WITH GRANT OPTION;
+\end{lstlisting}
+\end{itemize}
 
 
-brauch nun schon 2 stunden fuer hibernate
-skipping this
 
 
 \section{Build a RESTful WebService}
+
 %"RESTful web services are built to work best on the Web. Representational State Transfer (REST) is an architectural style that specifies constraints, such as the uniform interface, that if applied to a web service induce desirable properties, such as performance, scalability, and modifiability, that enable services to work best on the Web. In the REST architectural style, data and functionality are considered resources and are accessed using Uniform Resource Identifiers (URIs), typically links on the Web. The resources are acted upon by using a set of simple, well-defined operations. The REST architectural style constrains an architecture to a client/server architecture and is designed to use a stateless communication protocol, typically HTTP. In the REST architecture style, clients and servers exchange representations of resources by using a standardized interface and protocol."\cite{javaEE6}
 %\\\\
 REST is an architectural style which is based on web-standards and the HTTP protocol. REST was first described by Roy Fielding in 2000.In a REST based architecture everything is a resource. A resource is accessed via a common interface based on the HTTP standard methods. In a REST based architecture you typically have a REST server which provides access to the resources and a REST client which accesses and modifies the REST resources. Every resource should support the HTTP common operations. Resources are identified by global IDs (which are typically URIs). REST allows that resources have different representations, e.g., text, XML, JSON etc. The REST client can ask for a specific representation via the HTTP protocol (content negotiation)  \cite{vogella}
@@ -239,6 +353,7 @@ public class RestfulWebservice {
 
 \newpage
 \section{Building the SOA Webservice in Java}
+\label{sec:ws}
 Because we were using the IntelliJ IDEA, this was quite easy.
 A hello world example with jax-ws can be generated under \textit{new project} -\textgreater \textit{Check Webservice } -\textgreater Check \textit{Generate server sample code}. \\
 This client code is a Hello World example and can already be run. When we accessed it trough the webbrowser we were able to see some information about the service and the generated wsdl File.\\
@@ -247,8 +362,8 @@ Under \cite{mkyongjaxwsexample} we were able to find a complete example, using a
 \begin{itemize}
 \item \texttt{Searchable}-Interface (Listing \ref{Searchable})
 \item \texttt{KnowledgeBaseSearcher}-Class which implements the \texttt{Searchable}-Interface and provides the search method (Listing \ref{KnowledgeBaseSearcher})
-\item \texttt{KnowledgeBaseSearcherPublisher}-Class which publishes the \texttt{KnowledgeBaseSearcher}-Service  (Listing \ref{KnowledgeBaseSearcherPublisher})
-\item \texttt{KnowledgeBaseSearcherClient}-Class which is using the service over it's WSDL File (Listing \ref{KnowledgeBaseSearcherClient})
+\item \texttt{KnowledgeBaseSearcherPublisher}-Class which publishes the \texttt{KnowledgeBaseSearcher}-Service  (Listing \ref{KnowledgeBaseSearcherPublisher}). Later this was done by the Starter Class.
+\item \texttt{KnowledgeBaseSearcherClient}-Class which is using the service over it's WSDL File (Listing \ref{KnowledgeBaseSearcherClient}). Later this has been done a bit more complicated with a nice CLI.
 \end{itemize}
 Man muss nun zuerst den \texttt{KnowledgeBaseSearcherPublisher} starten, um das Service zu publishen und das Starten des Clients (\texttt{KnowledgeBaseSearcherClient}) und das unten angegebene Beispiel nun gibt nun
 \textit{Return the search query with the search of: blabla} aus.
@@ -294,18 +409,126 @@ public class KnowledgeBaseSearcherClient {
     }
 }
 \end{lstlisting}
+\subsection{WSDL}
+A WSDl File can be generated using IntelliJ. We did: right click onto the KnowledgeBaseService - WebServices - Generate WSDL from Java Code - OK.\\
+The WSDL File (Listing \ref{wsdl}) can than be found in the code base.
+\begin{lstlisting}[caption=WSDL File for the KnowledgeBaseSearcher class, label=wsdl]
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- Generated by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.7-b01  svn-revision#${svn.Last.Changed.Rev}. -->
+<definitions targetNamespace="http://soa" name="KnowledgeBaseSearcher" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:tns="http://soa" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <import namespace="http://soa/" location="Searchable.wsdl"/>
+  <binding name="KnowledgeBaseSearcherBinding" type="ns1:Searchable" xmlns:ns1="http://soa/">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <operation name="search">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://soa/"/>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://soa/"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="KnowledgeBaseSearcher">
+    <port name="KnowledgeBaseSearcher" binding="tns:KnowledgeBaseSearcherBinding">
+      <soap:address location="http://localhost:8080/services/soa/KnowledgeBaseSearcher"/>
+    </port>
+  </service>
+</definitions>
+\end{lstlisting}
 
-WICHTIG WICHTIG WICHTIG WICHTIG
-		<property name="hibernate.hbm2ddl.auto">update</property>
-		<property name="hibernate.hbm2ddl.auto">update</property>
-		<property name="hibernate.hbm2ddl.auto">update</property>
-		<property name="hibernate.hbm2ddl.auto">update</property>
-		<property name="hibernate.hbm2ddl.auto">update</property>
+\section{Inserting Test Data}
+We used the abstract class \texttt{PerformActionOnDatabase} and the more concrete class \texttt{KnowledgeBaseManagement}. \\
+The method delete is using a \texttt{ManageableTable} (Interface implemented by the model classes), which provides the method \texttt{getAllQuery}.
+\begin{lstlisting}[caption=Deleting all old entries, label=delete]
+ public void deleteAll(ManageableTable table){
+            //opening Session and Transaction
+            Session s = m_sessionFactory.openSession();
+            Transaction t = s.beginTransaction();
+            t.begin();
+
+            // create query
+            org.hibernate.Query q = s.getNamedQuery(table.getAllQuery());
+
+            // run query and fetch result
+            List<?> res = q.list();
+
+            for(Object entry: res){
+                s.delete(entry);
+            }
+    }
+\end{lstlisting}
+In the Listing \ref{generateEntry} an example for generating random inserts is shown.
+\begin{lstlisting}[caption=Generating Inserts (as an example), label=generateEntry]
+Session s = super.m_sessionFactory.openSession();
+Transaction tx = null;
+tx = s.beginTransaction();
+
+KnowledgeBase kb;
+
+StringBuilder topic;
+StringBuilder text;
+
+Random random = new Random();
+
+for(int i = 0; i < number; ++i){
+  topic = new StringBuilder();
+  for (int j = 0; j < length1; j++) {
+    topic.append(words[random.nextInt(words.length)]+ " ");
+  }
+  text = new StringBuilder();
+  for (int j = 0; j < length2; j++) {
+    text.append(words[random.nextInt(words.length)]+ " ");
+  }
+  kb = new KnowledgeBase(topic.toString(),text.toString());
+  s.saveOrUpdate(kb);
+}
+
+tx.commit();
+s.flush();
+s.close();
+\end{lstlisting}
+\section{Searching}
+The Data was searched using the Tag Entity and the users searchstring. The webservice is explained in section \ref{sec:ws}. We used a Name Query for this again and a loop for generating the String as a return type.
+
+\begin{lstlisting}[caption=Search method of the Service, label=generateEntry]
+
+ @Override
+    public String search(String searchstring) {
+        StringBuilder sb = new StringBuilder();
+
+        // open Session
+        Session session = sf.openSession();
 
 
+        // create query
+        Query q = session.getNamedQuery("searchTag");
 
-http://docs.jboss.org/hibernate/core/3.5/reference/en/html/batch.html
+        // setting parameters
+        q.setParameter("searchstring", searchstring);
 
+        long startTime = System.currentTimeMillis();
+
+        // run query and fetch reslut
+        List<Tag> res = q.list();
+
+        if (res.size() >= 1) {
+            List<KnowledgeBase>kbs = res.get(0).getKnowledgebases();
+            kbs.forEach(kb -> {
+                sb.append("Knowledge: " + kb.toString());
+            });
+        }
+        
+        s = sb.toString();
+
+        long estimatedTime = System.currentTimeMillis() - startTime;
+
+        newString += "Searching took "+estimatedTime/1000 +" seconds\n";
+
+    }
+    \end{lstlisting}
+\section{Performance?}
+%TODO
 
 \newpage
 \begin{thebibliography}{56}
@@ -326,7 +549,12 @@ http://docs.jboss.org/hibernate/core/3.5/reference/en/html/batch.html
   \textit{  http://www.mkyong.com/webservices/jax-ws/jax-ws-hello-world-example/}
   \newline last used: 12.04.2014, 10:36
   
-
+\bibitem{hostpermisson}
+   \textbf{Error: Host xxx is not allowed to connect to this MySQL server}\\ Aaditya Bhatt, answered Oct 10 '13 at 6:32\\
+  \textit{   http://stackoverflow.com/questions/19288606/error-host-xxx-is-not-allowed-to-connect-to-this-mysql-server\#comment28561857\_19288606
+}
+  \newline last used: 16.04.2014, 15:06
   
+
 \end{thebibliography}
 \end{document}

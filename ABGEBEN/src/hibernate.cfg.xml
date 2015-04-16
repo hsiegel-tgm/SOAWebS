@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- Database connection settings -->
+ 		<property name="hibernate.connection.driver_class"> com.mysql.jdbc.Driver </property>
+ 		<property name="hibernate.connection.url">jdbc:mysql://10.0.104.150:3306/iknow</property>
+		<property name="hibernate.connection.username" >vsdb</property>
+		<property name="hibernate.connection.password" >vsdbpassword</property>
+		<property name="hibernate.dialect" >org.hibernate.dialect.MySQLDialect</property>
+		<property name="connection.pool_size">5</property>
+		<property name="current_session_context_class">thread</property>
+		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+
+
+		<!-- UPDATE -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+
+		<property name="hibernate.jdbc.batch_size">49</property>
+
+		<!-- Logging -->
+		<property name="show_sql">false</property>
+
+
+		<mapping class="model.KnowledgeBase"/>
+		<mapping class="model.Tag"/>
+	</session-factory>
+</hibernate-configuration>

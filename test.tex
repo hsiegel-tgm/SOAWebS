@@ -173,7 +173,7 @@ Inserting Test-Data  & Siegel &  30 minutes  &   \textcolor{red}{270 minutes}  \
 Testing the Performance  & Siegel &  30  minutes  &  \textcolor{red}{60  minutes}  \\ \hline 
 
 RestFul CRUD Operations & Siegel &  90   minutes & \textcolor{red}{210 minutes} \\  
-  & Haidn &  90 minutes  &  XXX   minutes  \\ \hline 
+  & Haidn &  90 minutes  &  270   minutes  \\ \hline 
 
 
 Generate SOA Webservice & Siegel &  60 minutes &  \textcolor{red}{120 minutes} \\ \hline 
@@ -181,14 +181,14 @@ Generate SOA Webservice & Siegel &  60 minutes &  \textcolor{red}{120 minutes} \
 Include SOAP for SOA Webservice & Siegel &  30 minutes &  60 minutes \\ \hline 
 Generate WSDL File & Siegel &  30 minutes & \textcolor{green}{10 minutes}  \\ \hline 
 
-Generate Website & Haidn &  60 minutes &  XXX minutes \\ \hline 
+Generate Website & Haidn &  60 minutes &  270 minutes \\ \hline 
 
 Generate Client for SOA Webservice & Siegel &  60 minutes & \textcolor{red}{180 minutes} \\ \hline 
 
-Document Datatransfer with SOAP & Siegel &  60 minutes &  \\ \hline 
+Document Datatransfer with SOAP & Siegel &  60 minutes & 30  minutes \\ \hline 
 
 Testing & Siegel &  90  minutes  &  310  minutes  \\  
-  & Haidn &  90  minutes  &  XXX  minutes   \\ \hline 
+  & Haidn &  90  minutes  & 300  minutes   \\ \hline 
 
 
 Documentation  & Siegel &  60 minutes  &  90 minutes  \\  
@@ -196,12 +196,12 @@ Documentation  & Siegel &  60 minutes  &  90 minutes  \\
 
 \hline 
 
-Testing & Siegel &  8 hours  & xxx   \\  
-  & Haidn &  8 hours   & xxx   \\ \hline 
+Testing & Siegel &  8 hours  & 22.5   \\  
+  & Haidn &  8 hours   & 22.5   \\ \hline 
 
 
  \hline 
-\textbf{Total Team} & & \textbf{15 hours} &\textbf{xx hours}  \\ \hline 
+\textbf{Total Team} & & \textbf{15 hours} &\textbf{45 hours}  \\ \hline 
 \end{tabular}
 \end{table}
 
@@ -211,16 +211,17 @@ For the Company iKnow Systems a Knowledgemanagement like Wikipedia should be don
 \item A data model which performs well should be implemented\\
 \textcolor{green}{Datamodel was generated. Performance is fine}
 \item A RestFul Webservice should be done as an interface which can Update, Create and Delete an Entry.\\
-\textcolor{red}{?}
+\textcolor{orange}{Troubles deploying the service using Java EE. Implemented seperated solution.}
 \item A SOA Webservie should be done\\
 \textcolor{green}{Webservice works, WSDL was generated} \\
 \item Generate a Website for using the Webservices\\
-\textcolor{red}{?}
+\textcolor{green}{Website is up and has a suitable UI.}
+\textcolor{red}{Updating entries should be checked again.}
 \item Implement a Client which calls the Webservice\\
 \textcolor{green}{Client works and CLI works} \\
 \textcolor{orange}{Only tested locally, but this was not demanded.}
 \item Document the Datatransfer with SOAP\\
-\textcolor{red}{Not implemented}
+\textcolor{green}{Worked with Wireshark}
 \item Have a routine for inserting 1000000 Entries \\
 \textcolor{green}{Works fine} \\
 \end{itemize}
@@ -360,6 +361,21 @@ public class RestfulWebservice {
     }
 }
 \end{lstlisting}
+\newpage
+\subsection{PHP}
+To provide a webservice that is able to interact with our knowledge base we decided to use PHP. The topmost used request for our proposes ist GET to interact with the system. The functions are provided using an action tag in the request which allows the following commands:
+\begin{enumerate}
+	\item add
+	\item remove
+	\item update
+\end{enumerate}
+The data structure that comes with our service is defined over a topic, which represents the title of an knowledgebase entry and it's content.\\
+The deleting option requres an id that was created by inserting the specific entry.\\
+Every function can either return a success message or a failure state.\\
+\\
+\section{Webservice interface}
+The interface of our webservice is written in HTML, CSS and PHP as well. It provides the functionality to list all entries and grafically decide for an action to execute.\\
+The changes made using the interface are immediately displayed on the screen. Therefore a heading bar shows the service response after an action was called. Additionally the user has always an overview of the current size of the knowledgebase.
 
 
 
@@ -469,7 +485,13 @@ The WSDL File (Listing \ref{wsdl}) can than be found in the code base.
   </service>
 </definitions>
 \end{lstlisting}
-
+\subsection{SOAP}
+In order to fetch the SOAP messages, we (Vennesa Belinic and me) used Wireshark. We had to test this over the network which was done using out jar.\FloatBarrier
+\begin{figure}[here!]
+\centering
+\includegraphics[width=0.7\textwidth]{images/wireshark}
+\caption{Output of the Wireshark. SOAP can be seen}
+\end{figure}\FloatBarrier
 \section{Inserting Test Data}
 We used the abstract class \texttt{PerformActionOnDatabase} and the more concrete class \texttt{KnowledgeBaseManagement}. \\
 The method delete is using a \texttt{ManageableTable} (Interface implemented by the model classes), which provides the method \texttt{getAllQuery}.
@@ -564,11 +586,16 @@ The Data was searched using the Tag Entity and the users searchstring. The webse
 With our data structure, we inserted 1000000 knowledge base entries. \\
 The insert of all the data took about 10 minutes when we tested it.
 \\
-Because we only search with the Tags, searching takes only about 1 second, which is definitely sufficient performance for us! \\
-
+Because we only search with the Tags, searching takes only about 1 second, which is definitely sufficient performance for us! 
 
 \section{How to run the code}
-The jar must only be run and then a CLI will start. Please note that the hibernate config must be set to the right database settings.
+The jar must only be run and then a CLI will start. Please note that the hibernate config must be set to the right database settings.\\
+\\
+As an example the following input should be done to both client and searcher if it should work:\\
+\texttt{ip-address}\\
+\texttt{\textbackslash searcher}\\
+\texttt{9999}\\\\
+In order to fill the database, the jar must be started as well.
 
 \newpage
 \begin{thebibliography}{56}

@@ -173,7 +173,7 @@ Inserting Test-Data  & Siegel &  30 minutes  &   \textcolor{red}{270 minutes}  \
 Testing the Performance  & Siegel &  30  minutes  &  \textcolor{red}{60  minutes}  \\ \hline 
 
 RestFul CRUD Operations & Siegel &  90   minutes & \textcolor{red}{210 minutes} \\  
-  & Haidn &  90 minutes  &  XXX   minutes  \\ \hline 
+  & Haidn &  90 minutes  &  270   minutes  \\ \hline 
 
 
 Generate SOA Webservice & Siegel &  60 minutes &  \textcolor{red}{120 minutes} \\ \hline 
@@ -181,14 +181,14 @@ Generate SOA Webservice & Siegel &  60 minutes &  \textcolor{red}{120 minutes} \
 Include SOAP for SOA Webservice & Siegel &  30 minutes &  60 minutes \\ \hline 
 Generate WSDL File & Siegel &  30 minutes & \textcolor{green}{10 minutes}  \\ \hline 
 
-Generate Website & Haidn &  60 minutes &  XXX minutes \\ \hline 
+Generate Website & Haidn &  60 minutes &  270 minutes \\ \hline 
 
 Generate Client for SOA Webservice & Siegel &  60 minutes & \textcolor{red}{180 minutes} \\ \hline 
 
 Document Datatransfer with SOAP & Siegel &  60 minutes &  \\ \hline 
 
 Testing & Siegel &  90  minutes  &  310  minutes  \\  
-  & Haidn &  90  minutes  &  XXX  minutes   \\ \hline 
+  & Haidn &  90  minutes  & 300  minutes   \\ \hline 
 
 
 Documentation  & Siegel &  60 minutes  &  90 minutes  \\  
@@ -196,12 +196,12 @@ Documentation  & Siegel &  60 minutes  &  90 minutes  \\
 
 \hline 
 
-Testing & Siegel &  8 hours  & xxx   \\  
-  & Haidn &  8 hours   & xxx   \\ \hline 
+Testing & Siegel &  8 hours  & 22   \\  
+  & Haidn &  8 hours   & 22.5   \\ \hline 
 
 
  \hline 
-\textbf{Total Team} & & \textbf{15 hours} &\textbf{xx hours}  \\ \hline 
+\textbf{Total Team} & & \textbf{15 hours} &\textbf{44.5 hours}  \\ \hline 
 \end{tabular}
 \end{table}
 
@@ -211,11 +211,12 @@ For the Company iKnow Systems a Knowledgemanagement like Wikipedia should be don
 \item A data model which performs well should be implemented\\
 \textcolor{green}{Datamodel was generated. Performance is fine}
 \item A RestFul Webservice should be done as an interface which can Update, Create and Delete an Entry.\\
-\textcolor{red}{?}
+\textcolor{orange}{Troubles deploying the service using Java EE. Implemented seperated solution.}
 \item A SOA Webservie should be done\\
 \textcolor{green}{Webservice works, WSDL was generated} \\
 \item Generate a Website for using the Webservices\\
-\textcolor{red}{?}
+\textcolor{green}{Website is up and has a suitable UI.}
+\textcolor{red}{Updating entries should be checked again.}
 \item Implement a Client which calls the Webservice\\
 \textcolor{green}{Client works and CLI works} \\
 \textcolor{orange}{Only tested locally, but this was not demanded.}
@@ -360,6 +361,21 @@ public class RestfulWebservice {
     }
 }
 \end{lstlisting}
+\newpage
+\subsection{PHP}
+To provide a webservice that is able to interact with our knowledge base we decided to use PHP. The topmost used request for our proposes ist GET to interact with the system. The functions are provided using an action tag in the request which allows the following commands:
+\begin{enumerate}
+	\item add
+	\item remove
+	\item update
+\end{enumerate}
+The data structure that comes with our service is defined over a topic, which represents the title of an knowledgebase entry and it's content.\\
+The deleting option requres an id that was created by inserting the specific entry.\\
+Every function can either return a success message or a failure state.\\
+\\
+\section{Webservice interface}
+The interface of our webservice is written in HTML, CSS and PHP as well. It provides the functionality to list all entries and grafically decide for an action to execute.\\
+The changes made using the interface are immediately displayed on the screen. Therefore a heading bar shows the service response after an action was called. Additionally the user has always an overview of the current size of the knowledgebase.
 
 
 
